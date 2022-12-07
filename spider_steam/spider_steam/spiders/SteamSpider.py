@@ -14,9 +14,9 @@ class SteamproductspiderSpider(scrapy.Spider):
 
     def start_requests(self):
         for url in self.start_urls:
-            yield scrapy.Request(url=url, callback=self.parse_for_page)
+            yield scrapy.Request(url=url, callback=self.parse_page)
 
-    def parse_for_page(self, response):
+    def parse_page(self, response):
         games = response.css('a[class = "search_result_row ds_collapse_flag "]::attr(href)').extract()
         for link in games:
             if 'agecheck' in link:
